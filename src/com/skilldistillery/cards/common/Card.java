@@ -19,13 +19,9 @@ public class Card {
 		result = prime * result + ((suit == null) ? 0 : suit.hashCode());
 		return result;
 	}
-
-//	private int getValue() {
-//		return rank.getValue();
-//	}
 	
-	public Rank getValue() {
-		return this.rank;
+	public int getValue() {
+		return rank.getValue();
 	}	
 
 	public Suit getSuit() {
@@ -43,13 +39,6 @@ public class Card {
 	public void setRank(Rank rank) {
 		this.rank = rank;
 	}
-
-//	public int getValue() {
-//		int value = Integer.parseInt(getRank()).toString());
-//		return value;
-//	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
