@@ -7,11 +7,23 @@ public class Player implements PlayingBlackjack {
 	private String name;
 	private int money;
 	private HandOfCards hand;
-	Scanner input = new Scanner(System.in);
+	Scanner input;
 	
 	
 	
+	public Player(String name, int money) {
+		
+	}
 	
+	
+	public String scannerGetInput() {
+		input = new Scanner(System.in);
+		return input.nextLine();
+	}
+	
+	public int scannerGetNumber() {
+		return input.nextInt();
+	}
 	
 	public int placeWager(int bet) {
 		if(bet > money) {
@@ -30,6 +42,16 @@ public class Player implements PlayingBlackjack {
 		
 	}
 	
+	@Override
+	public boolean hitMe() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean stay() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 //*******************************AUTO-GENERATED STUFF*********************************************** 	
 	
 	public String getName() {
@@ -49,16 +71,6 @@ public class Player implements PlayingBlackjack {
 	}
 	public void setHand(HandOfCards hand) {
 		this.hand = hand;
-	}
-	@Override
-	public boolean hitMe() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean stay() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

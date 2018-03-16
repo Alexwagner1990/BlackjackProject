@@ -20,6 +20,12 @@ public class Deck {
 		
 	}
 	
+	
+	public List<Card> getDeck() {
+		return deck;
+	}
+
+
 	public int checkDeckSize() {
 		return deck.size();
 	}
@@ -31,10 +37,5 @@ public class Deck {
 	public void shuffle() {
 		Collections.shuffle(deck);
 	}
-	
-//	public int getValue() {
-//		int value = Integer.parseInt.getRank().toString();
-//		return value;
-//	}
 	
 }
