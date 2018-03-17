@@ -1,5 +1,6 @@
 package com.skilldistillery.cards.blackjack;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player implements PlayingBlackjack {
@@ -12,7 +13,8 @@ public class Player implements PlayingBlackjack {
 	
 	
 	public Player(String name, int money) {
-		
+		this.name = name;
+		this.money = money;
 	}
 	
 	
@@ -43,15 +45,13 @@ public class Player implements PlayingBlackjack {
 	}
 	
 	@Override
-	public boolean hitMe() {
-		// TODO Auto-generated method stub
+	public boolean hitMe(String input){
+		if(input.equalsIgnoreCase("hit")) {
+			return true;
+		}
 		return false;
 	}
-	@Override
-	public boolean stay() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 //*******************************AUTO-GENERATED STUFF*********************************************** 	
 	
 	public String getName() {
@@ -71,6 +71,17 @@ public class Player implements PlayingBlackjack {
 	}
 	public void setHand(HandOfCards hand) {
 		this.hand = hand;
+	}
+
+
+	@Override
+	public boolean hitMe(int handValue) { //PLAYER WONT USE THIS
+		return false; //ONLY DEALER USES THIS
+	}
+
+	@Override
+	public boolean hitMe() {
+		return false;
 	}
 
 }

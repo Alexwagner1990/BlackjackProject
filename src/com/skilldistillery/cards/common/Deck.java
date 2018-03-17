@@ -6,36 +6,34 @@ import java.util.List;
 
 public class Deck {
 
-	List<Card> deck;
-	
+	List<Card> deck = new ArrayList<>();
+
 	public Deck() {
-		deck = new ArrayList<>();
+		// deck = new ArrayList<>();
 		Suit[] suit = Suit.values();
 		Rank[] rank = Rank.values();
 		for (Suit eachSuit : suit) {
 			for (Rank eachRank : rank) {
 				deck.add(new Card(eachSuit, eachRank));
-			} 
+			}
 		}
-		
+
 	}
-	
-	
+
 	public List<Card> getDeck() {
 		return deck;
 	}
 
-
 	public int checkDeckSize() {
 		return deck.size();
 	}
-	
+
 	public Card dealCard() {
 		return deck.remove(0);
 	}
-	
+
 	public void shuffle() {
 		Collections.shuffle(deck);
 	}
-	
+
 }

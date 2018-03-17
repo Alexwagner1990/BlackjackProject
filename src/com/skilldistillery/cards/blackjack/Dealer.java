@@ -11,37 +11,40 @@ public class Dealer implements PlayingBlackjack {
 	private int money = Integer.MAX_VALUE;
 	private HandOfCards hand;
 	private Deck deck;
-	
+
 	public Dealer(String name) {
 		this.name = name;
-		this.deck = new Deck();
+		deck = new Deck();
 	}
-	
-	public Deck getDeck() {
-		return deck;
-	}
-	
-	public void setDeck(Deck deck) {
-		this.deck = deck;
-	}
-	
-	
-	public Card dealACard() {
+
+	public Card startAHand() {
 		Card card = deck.dealCard();
 		return card;
 	}
+	public Card drawACard() {
+		Card card = deck.dealCard();
+		return card;
+	}
+
+	public Deck getDeck() {
+		return this.deck;
+	}
+
+	@Override
+	public boolean hitMe(int handValue) { //MAY NOT USE THIS
+		if(handValue < 17) {
+			return true;
+		}
+		return false;
+	}
+
 	@Override
 	public boolean hitMe() {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
-	
-	@Override
-	public boolean stay() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	//*******************************AUTO-GENERATED STUFF*********************************************** 	
+	// *******************************AUTO-GENERATED
+	// ***********************************************
 	public String getName() {
 		return name;
 	}
@@ -49,7 +52,7 @@ public class Dealer implements PlayingBlackjack {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public HandOfCards getHand() {
 		return hand;
 	}
@@ -59,5 +62,10 @@ public class Dealer implements PlayingBlackjack {
 	}
 
 
-	
+	@Override
+	public boolean hitMe(String input) { //DEALER WONT USE THIS
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

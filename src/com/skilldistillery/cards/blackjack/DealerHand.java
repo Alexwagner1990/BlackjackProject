@@ -8,4 +8,8 @@ public class DealerHand extends HandOfCards {
 		super.addCardToHand(card);
 	}
 	
+	public HandOfCards clearHandAtEndOfRound() {
+		HandOfCards newHand = new DealerHand(); //CAREFUL ABOUT MAKING A NEW OBJECT HERE
+		return newHand;	
+	}
 }
