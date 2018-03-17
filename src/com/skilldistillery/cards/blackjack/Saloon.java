@@ -101,9 +101,18 @@ public class Saloon {
 			} // end dealer while loop
 			if(dhand.getValueOfHand()<21 && phand.getValueOfHand()<21) {
 				System.out.println("THIS IS A TEST OF THE EMERGENCY BROADCAST SYSTEM"); //test
+				if(phand.getValueOfHand() > dhand.getValueOfHand()) {
+					System.out.println("Player has " + phand.getValueOfHand() + ", dealer has " + dhand.getValueOfHand() + ", player wins.");
+				}
+				else if(phand.getValueOfHand() < dhand.getValueOfHand()) {
+					System.out.println("Player has " + phand.getValueOfHand() + ", dealer has " + dhand.getValueOfHand() + ", dealer wins.");
+				}
+				else {
+					System.out.println("Both have " + dhand.getValueOfHand() + ", that's a push.");
+				}
 				//Need to add something here about comparing the values of player and dealer.
 			}
-			phand = (PlayerHand) phand.clearHandAtEndOfRound(); //CAREFUL WITH THIS - MAKES A NEW OBJECT
+			phand = (PlayerHand) phand.clearHandAtEndOfRound(); //CAREFUL WITH THIS - MAKES A NEW OBJECT - I THINK THIS WORKS
 			dhand = (DealerHand) dhand.clearHandAtEndOfRound(); //CAREFUL WITH THIS - MAKES A NEW OBJECT
 			//flush out hands here, probably using loops. Need to look closer at why this isn't working
 		} // end round loop
