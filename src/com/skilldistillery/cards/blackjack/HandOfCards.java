@@ -51,14 +51,13 @@ public abstract class HandOfCards {
 		else if (pValue == dValue) {
 			return false; //NOT SURE WHAT HAPPENS IF BOTH PLAYER AND DEALER TIE, REVISIT THIS
 		}
-		
 		return false;
 	}
 	
 
 
 	@Override
-	public String toString() {
+	public String toString() { //check player and dealers toString method if not working
 		return "HandOfCards [hand=" + hand + "]";
 	}
 

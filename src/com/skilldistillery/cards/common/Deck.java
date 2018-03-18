@@ -9,7 +9,6 @@ public class Deck {
 	List<Card> deck = new ArrayList<>();
 
 	public Deck() {
-		// deck = new ArrayList<>();
 		Suit[] suit = Suit.values();
 		Rank[] rank = Rank.values();
 		for (Suit eachSuit : suit) {
@@ -35,5 +34,12 @@ public class Deck {
 	public void shuffle() {
 		Collections.shuffle(deck);
 	}
+
+	public void setDeck(List<Card> deck) {
+		this.deck = deck;
+	}
+
+	
+	
 
 }

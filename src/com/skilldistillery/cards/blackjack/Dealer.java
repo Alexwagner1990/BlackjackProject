@@ -1,9 +1,12 @@
 package com.skilldistillery.cards.blackjack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.skilldistillery.cards.common.Card;
 import com.skilldistillery.cards.common.Deck;
+import com.skilldistillery.cards.common.Rank;
+import com.skilldistillery.cards.common.Suit;
 
 public class Dealer implements PlayingBlackjack {
 
@@ -17,11 +20,33 @@ public class Dealer implements PlayingBlackjack {
 		deck = new Deck();
 	}
 
+//	CAREFUL HERE
+	public void resetEmptyDeck() { 
+			System.out.println("I'm out of cards, let me shuffle it back up...");
+			List<Card> newdeck = new ArrayList<>();
+			Suit[] suit = Suit.values();
+			Rank[] rank = Rank.values();
+			for (Suit eachSuit : suit) {
+				for (Rank eachRank : rank) {
+					newdeck.add(new Card(eachSuit, eachRank));
+				}
+			}
+			deck.setDeck(newdeck);
+	}
+	
 	public Card startAHand() {
+		if(deck.checkDeckSize() == 0) { 
+			resetEmptyDeck();
+			deck.shuffle();
+		}
 		Card card = deck.dealCard();
 		return card;
 	}
 	public Card drawACard() {
+		if(deck.checkDeckSize() == 0) {
+			resetEmptyDeck();
+			deck.shuffle();
+		}
 		Card card = deck.dealCard();
 		return card;
 	}
@@ -31,7 +56,7 @@ public class Dealer implements PlayingBlackjack {
 	}
 
 	@Override
-	public boolean hitMe(int handValue) { //MAY NOT USE THIS
+	public boolean hitMe(int handValue) {
 		if(handValue < 17) {
 			return true;
 		}
