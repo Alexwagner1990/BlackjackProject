@@ -16,7 +16,7 @@ public class PlayerHand extends HandOfCards {
 	}
 	
 	public String toString() {
-		return "Here's what you are showing\n\n***************************" + "\n\n" + hand.get(0) + "\n" + hand.get(1) + "\n\n***************************\n";
+		return "++ Here's what you are showing ++\n\n***************************" + "\n\n" + hand.get(0) + "\n" + hand.get(1) + "\n\n***************************\n";
 		//RETURN TO THIS - FIND SOME WAY TO RUN THE .GET method on player - maybe this toString should take a string (the player name)
 	}
 }

@@ -22,7 +22,6 @@ public class Dealer implements PlayingBlackjack {
 
 //	CAREFUL HERE
 	public void resetEmptyDeck() { 
-			System.out.println("I'm out of cards, let me shuffle it back up...");
 			List<Card> newdeck = new ArrayList<>();
 			Suit[] suit = Suit.values();
 			Rank[] rank = Rank.values();
@@ -35,7 +34,8 @@ public class Dealer implements PlayingBlackjack {
 	}
 	
 	public Card startAHand() {
-		if(deck.checkDeckSize() == 0) { 
+		if(deck.checkDeckSize() == 0) {
+			System.out.println("\n\"Woah, hold on a tick, lemme shuffle these puppies back up . . .\n");
 			resetEmptyDeck();
 			deck.shuffle();
 		}

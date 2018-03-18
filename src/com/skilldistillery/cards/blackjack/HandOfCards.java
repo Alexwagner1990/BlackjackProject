@@ -15,9 +15,13 @@ public abstract class HandOfCards {
 	}
 
 	public void displayHand() {
+		System.out.println();
+		System.out.println("++ Here's the updated hand ++");
+		System.out.println("********************************");
 		for (int i = 0; i < hand.size(); i++) {
 			System.out.println(hand.get(i).toString());
 		}
+		System.out.println("********************************");
 	}
 
 	public int getValueOfHand() {
@@ -44,14 +48,19 @@ public abstract class HandOfCards {
 		return false;
 	}
 
-	public boolean playerHasBetterHand(int pValue, int dValue) {
+	public void playerHasBetterHand(String playerName, int pValue, int dValue) {
 		if(pValue > dValue) {
-			return true;
+			System.out.println("\"You've got " + pValue + " to my " + dValue + ", I owe ya some dough.\"");
+			//give back double bet
 		}
-		else if (pValue == dValue) {
-			return false; //NOT SURE WHAT HAPPENS IF BOTH PLAYER AND DEALER TIE, REVISIT THIS
+		else if(pValue < dValue) {
+			System.out.println("\"Too bad, " + playerName + ", but " + pValue + " can't beat my " + dValue + ", betta luck next hand.\"");
+			//lose bet
 		}
-		return false;
+		else {
+			System.out.println("\"We both got " + dValue + ", eh? Ah well, thatsa push.\"");
+			//give back bet
+		}
 	}
 	
 

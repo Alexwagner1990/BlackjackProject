@@ -15,7 +15,7 @@ public class DealerHand extends HandOfCards {
 
 	@Override //to only show one card instead of both, just delete if not working
 	public String toString() {
-		return "Here's what the dealer is showing\n\n***************************" + "\n\n" + hand.get(1) + "\n\n***************************\n";
+		return "++ Here's what the dealer is showing ++\n\n***************************" + "\n\n" + hand.get(1) + "\n\n***************************\n";
 	}
 	
 	
