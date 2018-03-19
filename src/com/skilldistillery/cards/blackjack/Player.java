@@ -18,15 +18,6 @@ public class Player implements PlayingBlackjack {
 	}
 	
 	
-	public String scannerGetInput() {
-		input = new Scanner(System.in);
-		return input.nextLine();
-	}
-	
-	public int scannerGetNumber() {
-		return input.nextInt();
-	}
-	
 	public int placeWager(int bet) {
 		if(bet > money) {
 			System.out.println("You can't bet that much.");
