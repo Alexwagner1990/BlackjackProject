@@ -34,16 +34,20 @@ public class Saloon {
 			System.out.println(dhand);
 			if (dhand.doYouHaveTwentyOne(dhand.getValueOfHand())) {
 				if (phand.doYouHaveTwentyOne(phand.getValueOfHand())) {
+					dhand.displayHand();
 					System.out.println("Well hot damn, that's double blackjacks! Can't take yer coin this round!");
 					// return the bet amount to wallet
 					phand = (PlayerHand) phand.clearHandAtEndOfRound(); // CAREFUL WITH THIS - MAKES A NEW HAND OBJECT (BUT ASSIGNS IT TO ORIGINALLY CREATED HAND OBJECT)
 					dhand = (DealerHand) dhand.clearHandAtEndOfRound();
+					System.out.println("\n\"Alright, forget that last hand cardshark, here comes a new pair!\"\n\n");
 					dealerGetTurn = false;
 					continue;
 				}
+				dhand.displayHand();
 				System.out.println("\"Sheee-yewt that hand's pretty! I'll be takin ya wager\"");
 				phand = (PlayerHand) phand.clearHandAtEndOfRound(); // CAREFUL WITH THIS - MAKES A NEW HAND OBJECT (BUT ASSIGNS IT TO ORIGINALLY CREATED HAND OBJECT)
 				dhand = (DealerHand) dhand.clearHandAtEndOfRound();
+				System.out.println("\n\"Alright, forget that last hand cardshark, here comes a new pair!\"\n\n");
 				dealerGetTurn = false;
 				continue;
 			}
@@ -51,6 +55,7 @@ public class Saloon {
 				System.out.println("\"Ooof, this hand's yours " + player.getName() + " but I'll getcha next hand!\"");
 				phand = (PlayerHand) phand.clearHandAtEndOfRound(); // CAREFUL WITH THIS - MAKES A NEW HAND OBJECT (BUT ASSIGNS IT TO ORIGINALLY CREATED HAND OBJECT)
 				dhand = (DealerHand) dhand.clearHandAtEndOfRound();
+				System.out.println("\n\"Alright, forget that last hand cardshark, here comes a new pair!\"\n\n");
 				dealerGetTurn = false;
 				// return twice the amount bet
 				continue;
@@ -60,6 +65,7 @@ public class Saloon {
 				System.out.println("\"That's a good one slick, you win this time.\"");
 				phand = (PlayerHand) phand.clearHandAtEndOfRound(); // CAREFUL WITH THIS - MAKES A NEW HAND OBJECT (BUT ASSIGNS IT TO ORIGINALLY CREATED HAND OBJECT)
 				dhand = (DealerHand) dhand.clearHandAtEndOfRound();
+				System.out.println("\n\"Alright, forget that last hand cardshark, here comes a new pair!\"\n\n");
 				dealerGetTurn = false;
 				// return twice wagered amount to money field.
 				continue;
@@ -68,6 +74,7 @@ public class Saloon {
 				System.out.println("\"Ya hand's too hot " + player.getName() + ", cool it down a bit next round ya?\"");
 				phand = (PlayerHand) phand.clearHandAtEndOfRound(); // CAREFUL WITH THIS - MAKES A NEW HAND OBJECT (BUT ASSIGNS IT TO ORIGINALLY CREATED HAND OBJECT)
 				dhand = (DealerHand) dhand.clearHandAtEndOfRound();
+				System.out.println("\n\"Alright, forget that last hand cardshark, here comes a new pair!\"\n\n");
 				dealerGetTurn = false;
 				continue;
 			}
