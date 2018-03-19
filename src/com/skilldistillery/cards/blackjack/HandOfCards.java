@@ -48,18 +48,18 @@ public abstract class HandOfCards {
 		return false;
 	}
 
-	public void playerHasBetterHand(String playerName, int pValue, int dValue) {
+	public int playerHasBetterHand(String playerName, int pValue, int dValue) {
 		if(pValue > dValue) {
 			System.out.println("\"You've got " + pValue + " to my " + dValue + ", I owe ya some dough.\"");
-			//give back double bet
+			return 1;
 		}
 		else if(pValue < dValue) {
 			System.out.println("\"Too bad, " + playerName + ", but " + pValue + " can't beat my " + dValue + ", betta luck next hand.\"");
-			//lose bet
+			return -1;
 		}
 		else {
 			System.out.println("\"We both got " + dValue + ", eh? Ah well, thatsa push.\"");
-			//give back bet
+			return 0;
 		}
 	}
 	

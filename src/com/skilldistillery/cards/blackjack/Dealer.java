@@ -33,6 +33,16 @@ public class Dealer implements PlayingBlackjack {
 			deck.setDeck(newdeck);
 	}
 	
+	public void checkInitialAmount(int startingAmount) {
+		if(startingAmount <= 20) {
+			System.out.println("The ruffian furrows his brow. \"Hrmf. Not enough money, no blackjack. Get out.\" The saloon patrons are eyeing you suspiciously. \nYou decide to find your fortune elsewhere.");
+			System.exit(0);
+		}
+		if(startingAmount >= 100000) {
+			System.out.println("The ruffian rises from his seat. \"I'm no idiot! You lie! Get outta here!\" \nYou decide to leave before you get your head bashed in." );
+			System.exit(0);
+		}
+	}
 	public Card startAHand() {
 		if(deck.checkDeckSize() == 0) {
 			System.out.println("\n\"Woah, hold on a tick, lemme shuffle these puppies back up . . .\n");

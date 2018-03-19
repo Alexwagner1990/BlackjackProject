@@ -10,21 +10,34 @@ public class Player implements PlayingBlackjack {
 	private HandOfCards hand;
 	Scanner input;
 	
-	
-	
 	public Player(String name, int money) {
 		this.name = name;
 		this.money = money;
 	}
 	
-	
-	public int placeWager(int bet) {
+	public void didYouWinOrLose(int winningMoney) {
+		if(this.money >= winningMoney) {
+			System.out.println();
+			System.out.println("You've got enough money to to skip town! You flip an extra coin to Johnny and he flashes you a wink.\nYou buy a ticket for the next train heading east, the sheriff two steps two slow!\n");
+			System.exit(0);
+		}
+		if(this.money == 0) {
+			System.out.println();
+			System.out.println("You take a peek in your pocket and, to your horror, you've lost all your cash! \nJohnny gives you a \"them's the breaks!\" look as the town sherrif bursts through the saloon doors.\nYou're busted!");
+			System.exit(0);
+		}
+	}
+	public boolean placeWager(int bet) {
 		if(bet > money) {
-			System.out.println("You can't bet that much.");
-			return 0;
+			System.out.println("\"Whoya tryin ta fool bucko? You don't have that much coin!\"");
+			return false;
+		}
+		if(bet == 0) {
+			System.out.println("\"Ya gotta bet somethin kid!\"");
+			return false;
 		}
 		setMoney(money-bet);
-		return bet;
+		return true;
 	}
 	
 	public void doubleDown() {

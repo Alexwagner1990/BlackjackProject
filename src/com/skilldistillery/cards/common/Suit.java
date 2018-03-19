@@ -1,10 +1,10 @@
 package com.skilldistillery.cards.common;
 
 public enum Suit {
-	CLUBS("Clubs"),
-	SPADES("Spades"),
-	HEARTS("Hearts"),
-	DIAMONDS("Diamonds");
+	CLUBS("\u2663"),
+	SPADES("\u2660"),
+	HEARTS("\u2665"),
+	DIAMONDS("\u2666");
 	
 	final private String name;
 	

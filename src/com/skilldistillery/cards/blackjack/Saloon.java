@@ -12,6 +12,7 @@ public class Saloon {
 	Dealer dealer = new Dealer("Johnny");
 	PlayerHand phand = new PlayerHand();
 	DealerHand dhand = new DealerHand();
+	int winningMoney = 0;
 
 	public static void main(String[] args) {
 		Saloon theGustyGultch = new Saloon();
@@ -22,7 +23,17 @@ public class Saloon {
 		opener();
 		boolean playAnotherHand = true; //this will be set to false when player gets enough $$
 		while (playAnotherHand) {
-			// set a wager here
+			boolean validBet = true;
+			System.out.println("You take a peek inside your pocket. You have $" + player.getMoney() + " left.\n");
+			System.out.print("\"What's yer wager for this hand " + player.getName() + "?\"(Enter a whole number):");
+			int bet = input.nextInt();
+			validBet = player.placeWager(bet);
+				while(validBet == false) {
+					System.out.println("You take a peek inside your pocket. you have $" + player.getMoney() + " left.\n");
+					System.out.println("\"What's yer wager for this hand " + player.getName() + "?\"");
+					bet = input.nextInt();
+					validBet = player.placeWager(bet);
+					}
 			boolean dealerGetTurn = true;
 			for (int i = 0; i < 2; i++) {
 				Card playerCard = dealer.startAHand();
@@ -36,7 +47,7 @@ public class Saloon {
 				if (phand.doYouHaveTwentyOne(phand.getValueOfHand())) {
 					dhand.displayHand();
 					System.out.println("Well hot damn, that's double blackjacks! Can't take yer coin this round!");
-					// return the bet amount to wallet
+					player.setMoney((player.getMoney()) + bet);
 					phand = (PlayerHand) phand.clearHandAtEndOfRound(); // CAREFUL WITH THIS - MAKES A NEW HAND OBJECT (BUT ASSIGNS IT TO ORIGINALLY CREATED HAND OBJECT)
 					dhand = (DealerHand) dhand.clearHandAtEndOfRound();
 					System.out.println("\n\"Alright, forget that last hand cardshark, here comes a new pair!\"\n\n");
@@ -53,21 +64,21 @@ public class Saloon {
 			}
 			if (dhand.areYouBusted(dhand.getValueOfHand())) {
 				System.out.println("\"Ooof, this hand's yours " + player.getName() + " but I'll getcha next hand!\"");
+				player.setMoney((player.getMoney()) + (bet * 2));
 				phand = (PlayerHand) phand.clearHandAtEndOfRound(); // CAREFUL WITH THIS - MAKES A NEW HAND OBJECT (BUT ASSIGNS IT TO ORIGINALLY CREATED HAND OBJECT)
 				dhand = (DealerHand) dhand.clearHandAtEndOfRound();
 				System.out.println("\n\"Alright, forget that last hand cardshark, here comes a new pair!\"\n\n");
 				dealerGetTurn = false;
-				// return twice the amount bet
 				continue;
 			}
 
 			if (phand.doYouHaveTwentyOne(phand.getValueOfHand())) {
 				System.out.println("\"That's a good one slick, you win this time.\"");
+				player.setMoney((player.getMoney()) + (bet * 2));
 				phand = (PlayerHand) phand.clearHandAtEndOfRound(); // CAREFUL WITH THIS - MAKES A NEW HAND OBJECT (BUT ASSIGNS IT TO ORIGINALLY CREATED HAND OBJECT)
 				dhand = (DealerHand) dhand.clearHandAtEndOfRound();
 				System.out.println("\n\"Alright, forget that last hand cardshark, here comes a new pair!\"\n\n");
 				dealerGetTurn = false;
-				// return twice wagered amount to money field.
 				continue;
 			}
 			if (phand.areYouBusted(phand.getValueOfHand())) {
@@ -88,7 +99,7 @@ public class Saloon {
 					if (phand.doYouHaveTwentyOne(phand.getValueOfHand())) {
 						System.out.println("\"Ah, " + player.getName()
 								+ ", that's twenty-one, good show sport, here's ya payout champ.\"");
-						// here return double bet
+						player.setMoney((player.getMoney()) + (bet * 2));
 						dealerGetTurn = false;
 						break;
 					}
@@ -123,7 +134,7 @@ public class Saloon {
 					}
 					if (dhand.areYouBusted(dhand.getValueOfHand())) {
 						System.out.println("\"Oh, thats too much, ya got this round " + player.getName() + "!\"");
-						// give back double bet
+						player.setMoney((player.getMoney()) + (bet * 2));
 						break;
 					}
 				} else {
@@ -131,11 +142,17 @@ public class Saloon {
 				}
 			} // end dealer while loop
 			if ((phand.getValueOfHand() < 21) && (dhand.getValueOfHand() < 21)) {
-				phand.playerHasBetterHand(player.getName(), phand.getValueOfHand(), dhand.getValueOfHand());
-			}
+				int check = phand.playerHasBetterHand(player.getName(), phand.getValueOfHand(), dhand.getValueOfHand());
+				if(check == 1) {
+					player.setMoney((player.getMoney()) + (bet * 2));
+				}
+				else if(check == 0) {
+					player.setMoney((player.getMoney()) + (bet));
+				}
+			} //end if check
 			phand = (PlayerHand) phand.clearHandAtEndOfRound(); // CAREFUL WITH THIS - MAKES A NEW HAND OBJECT (BUT ASSIGNS IT TO ORIGINALLY CREATED HAND OBJECT)
 			dhand = (DealerHand) dhand.clearHandAtEndOfRound();
-
+			player.didYouWinOrLose(winningMoney);
 			System.out.println("\n\"Alright, forget that last hand cardshark, here comes a new pair!\"\n\n");
 		} // end round loop
 	}
@@ -144,7 +161,7 @@ public class Saloon {
 		System.out.println(
 				"The year is 1884. \nThe plains of Texas are harsh and unforgiving, and the small spit of town appearing in a haze on the horizon is a welcome sight. \nYou roll into town with nothing but the money you stole and your trusty steed.");
 		System.out.println(
-				"The law is hot on your heels - you need to triple your money to get a train ticket and head back east, and you need it fast.");
+				"The law is hot on your heels - you need to double your money to get a train ticket and head back east, and you need it fast.");
 		System.out.println(
 				"You spot a rough-looking saloon, The Gusty Gultch - the sort of place where fortunes can be won or lost over the course of a blackjack hand.");
 		System.out.println("Right about now, you need to make a fortune.");
@@ -154,8 +171,11 @@ public class Saloon {
 		player.setName(input.nextLine());
 		System.out.println("\"Hmm. " + player.getName() + "\" he grumbles back.");
 		System.out.println("His expression doesn't change as he asks, \"How much you got?\"");
-		System.out.print("You reply $: ");
-		player.setMoney(input.nextInt());
+		System.out.print("You reply $ (not too much, not too little!): ");
+		int startingMoney = input.nextInt();
+		dealer.checkInitialAmount(startingMoney);
+		player.setMoney(startingMoney);
+		winningMoney = (player.getMoney())*2;
 		System.out.println(
 				"\"Hmm. Got it. No funny business. No tricks. Just blackjack\"\nThe ruffian flashes a pistol in his waistband before standing up. \nYou assumed the ruffian would be your dealer, but he motions over another wiry, trickster-looking fellow to take his place.");
 		System.out.println(
@@ -163,16 +183,14 @@ public class Saloon {
 						+ player.getName()
 						+ ", is it? The name's Johnny, don't forget. I'm shufflin' up tha cawds, see, ready for some blackjack?");
 		System.out.print(
-				"He peeks up at me from the cards, a knowing glance that seemed to hide a secret. He flicks over a set of cards.");
-		String response = "wait"; //to get the program to wait for a response
-		while (response.equals("wait")) {
-		response = input.nextLine();
-		}
+				"He peeks up at me from the cards, a knowing glance that seemed to hide a secret. \nHe flicks over a set of cards.");
+		System.out.print("\n\n\"Ready ta play, hotshot?\"(yes/no):");
+		String response = input.next();
 		if (response.equalsIgnoreCase("no")) {
 			System.out.println(
 					"I decide to find more cash some other way - this saloon seems a bit too dangerous for me");
 			System.exit(0);
-		} //Couldn't actually get the decision to start the game to work, but without it the program is caught up in an infinite loop. will investigate later, but will leave it in for now.
+		} 
 		System.out.println();
 		System.out.println(
 				"\"Alright, here's ya first hand, slick, and keep those Aces in your pocket!\" the words sprint off his tounge.");
